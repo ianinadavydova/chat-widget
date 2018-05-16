@@ -19,8 +19,8 @@
 }
 
 .info-bar {
-    min-height: 70px;
-    flex-basis: 70px;
+    flex-shrink: 0;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,105 +42,110 @@
         margin-left: 10px;
     }
 
-.main-panel {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-between;
+.client-icon, .info-bar {
+    background: linear-gradient(120deg, #d5a66e, #d58f6e);
+    text-shadow: 0 1px 0 #5a5252cc;
 }
 
 .main-panel {
+    background: linear-gradient(120deg, #2b2130, #887492);
+    flex-grow: 1;
+    position: relative;
+}
+
+.message {
+    flex-grow: 1;
+    order: 1;
+    margin: 0 0 15px 0;
+    padding: 0 10px 0 15px;
+}
+
+.messages-container {
+    height: 460px;
+    padding: 0 5px 30px 0;
+    margin: 10px 10px;
+    overflow-y: scroll;
+}
+
+.message-block {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
-    background: linear-gradient(120deg, #2b2130, #887492);
-}
-
-.clients-bar {
-    display: flex;
-    flex-basis: 150px;
-    min-width: 150px;
-    align-items: stretch;
-    border-right: 1px solid #a99e92;
-    border-right-style: groove;
-    padding: 10px 0 30px 0;
-}
-
-.messages-bar {
-    display: flex;
-    flex-grow: 1;
-    color: dimgray;
-    padding: 10px 10px 30px 10px;
+    align-items: center;
     font-size: .85rem;
 }
 
-.message-list {
-    list-style-type: none;
+.client-info {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-grow: 1;
-    overflow-x: auto;
+    flex-direction: row;
+    flex-basis: 140px;
+    flex-shrink: 0;
+    align-items: center;
 }
 
-    .message-list li {
-        margin: 10px 20px 10px 20px;
-    }
-
-.clients-list {
-    list-style-type: none;
-    flex-grow: 1;
-    overflow-x: auto;
+.client-info {
+    margin: 0 0 10px 0;
 }
 
-    .clients-list li {
-        padding: 10px 5px 10px 5px;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
-.message {
+.message-content {
     background: rgba(255, 237, 219, 0.9);
     padding: 10px;
     border-radius: 6px;
     box-shadow: 2.65px 2.15px 15px #644d4d;
+    color: dimgray;
 }
 
+    .message-content:hover {
+        -webkit-box-shadow: 0 0 10px #edd4d4;
+        box-shadow: 0 0 10px #edd4d4;
+    }
+
+.message:hover + .client-info > :first-child {
+    box-shadow: 0 0 8px #edd4d4;
+}
+
+
 .date-time {
-    display: inline-block;
     font-size: .80rem;
-    margin: 5px 0 0 10px;
     line-height: 20px;
+    padding-left: 5px;
 }
 
 .client-icon {
-    display: inline-block;
     height: 50px;
     width: 50px;
     line-height: 50px;
     border-radius: 25px;
     text-align: center;
     font-size: 1.2rem;
-    margin-left: 5px;
+    margin: 4px;
 }
 
 .client-name {
     padding-bottom: 5px;
+    font-size: .9rem;
+}
+
+input[type='button'] {
+    cursor: pointer;
     color: aliceblue;
+    background-color: #ff7f7f00;
+    box-sizing: border-box;
+    border: 0;
+    margin: 10px 10px 40px 0;
+    font-weight: 900;
+    font-size: 1.5rem;
 }
 
-.client-icon, .info-bar {
-    background: linear-gradient(120deg, #d5a66e, #d58f6e);
-    text-shadow: 0 1px 0 #5a5252cc;
+input[type='button'], .message, .client-icon {
+    cursor: pointer;
 }
 
-.clients-list li:hover {
-    background: rgba(0,0,0,0.3);
+input[type=button]:hover {
+    text-shadow: 0 0 10px #edd4d4;
 }
 
-.message:hover {
-    -webkit-box-shadow: 0 0 10px #edd4d4;
-    box-shadow: 0 0 10px #edd4d4;
+input[type=button]:active {
+    font-size: 1.8rem;
 }
 
 ::-webkit-scrollbar {
@@ -159,25 +164,9 @@
         background: #555;
     }
 
-input[type='button'], li {
-    cursor: pointer;
-}
-
-input[type='button'] {
-    color: aliceblue;
-    background-color: #ff7f7f00;
-    box-sizing: border-box;
-    border: 0;
-    margin: 10px 10px 40px 0;
-    font-weight: 900;
-    font-size: 1.5rem;
-}
-
-
-input[type=button]:hover {
-    text-shadow: 0 0 10px #edd4d4;
-}
-
-input[type=button]:active {
-    font-size: 1.8rem;
+.message-block::after {
+    content: "";
+    border: 1px solid #a99e92b8;
+    align-self: stretch;
+    margin: 0;
 }
